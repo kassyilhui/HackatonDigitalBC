@@ -1,4 +1,13 @@
-﻿var app = new Vue({
+﻿Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyB0ualSPp-6O-QxrnHyc4CwzMPIufKzRmQ',
+        v: '3.26',
+    },
+    // Demonstrating how we can customize the name of the components
+    installComponents: 'places',
+});
+
+var app = new Vue({
     el: '#app',
     data: {
         message: 'Hello Vue.js!',

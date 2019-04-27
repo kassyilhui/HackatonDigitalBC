@@ -37,6 +37,11 @@ namespace HackatonProject.Controllers
             return View();
         }
 
+        public ActionResult MapaDeBusqueda()
+        {
+            return View();
+        }
+
         public ActionResult hola()
         {
             string hola = "holas";
