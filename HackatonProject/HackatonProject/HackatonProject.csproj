@@ -132,8 +132,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\estilos.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\daniel-frank-201417-unsplash.jpg" />
+    <Content Include="Content\img\jaron-nix-643590-unsplash.jpg" />
+    <Content Include="Content\img\louis-reed-747388-unsplash.jpg" />
+    <Content Include="Content\img\marcel-scholte-524343-unsplash.jpg" />
+    <Content Include="Content\img\marcelo-leal-525139-unsplash.jpg" />
+    <Content Include="Content\img\medic-563423_1920.jpg" />
     <Content Include="Content\materialize.css" />
     <Content Include="Content\materialize.min.css" />
     <Content Include="favicon.ico" />
