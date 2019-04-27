@@ -1,2 +1,2 @@
 # HackatonDigitalBC
-hackaton digital bc
+ Hackatón Digital Online Baja
