@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignUp</title>
+</head>
+<body>
+
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <div class="row signup">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    
+                    <input id="first_name" type="text" class="validate">
+                    <label for="first_name"> <i class="fa fa-user"></i> Nombre</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">  Apellido</label>
+                </div>
+            </div>
+         
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email"> <i class="fa fa-envelope"></i> Email</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password"><i class="fa fa-lock"></i> Contraseña</label>
+                </div>
+            </div>
+
+            <div class="row" style="position:center;">
+                <a class="waves-effect green lighten-2 btn text-darken-3 col s12 " style="position:center"> <i class="fa fa-heartbeat red-text text-lighten-2"></i> Registrarse</a>
+               
+            </div>
+
+         
+        </form>
+    </div>
+
+
+
+
+
+</body>
+</html>

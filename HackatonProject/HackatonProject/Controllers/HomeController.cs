@@ -8,6 +8,16 @@ namespace HackatonProject.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View();
