@@ -14,11 +14,13 @@ var app = new Vue({
     data: {
         message: 'Hello Vue.js!',
         mainUrl: '',
+        markers:[],
         center: {
             lat: 23.634501,
             lng: -102.55278399999997
 
         },
+        MapZoom:4,
         apiPath: 'http://hdigitalbc.pythonanywhere.com/api/',
         currentPlace: {}
     },
@@ -28,8 +30,8 @@ var app = new Vue({
             $('.parallax').parallax();
             $('select').formSelect();
         });
-        this.$session.set('username', "kass"); // Set the username in session Storage
-        this.$session.set('username', "tu"); // Set the username in session Storage
+        //this.$session.set('username', "kass"); // Set the username in session Storage
+        //this.$session.set('username', "tu"); // Set the username in session Storage
 
     },
     methods: {
@@ -61,7 +63,8 @@ var app = new Vue({
                     lat: this.currentPlace.geometry.location.lat(),
                     lng: this.currentPlace.geometry.location.lng(),
                 };
-
+               // this.markers.push({ position: this.center });
+                this.MapZoom = 12;
                 this.currentPlace = null;
             }
         }
