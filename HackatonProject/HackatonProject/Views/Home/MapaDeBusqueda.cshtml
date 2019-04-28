@@ -3,8 +3,20 @@
     ViewBag.Title = "MapaDeBusqueda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <div class="container">
+        <h2>Mapa De Busqueda</h2>
+        <div>
+            <h2>Search and add a pin</h2>
+            <label>
+                <gmap-autocomplete @@place_changed="setPlace">
+                </gmap-autocomplete>
+                <a class="waves-effect waves-effect btn" @@click="addMarker"><i class="fa fa-plus-circle"></i>Add</a>
+            </label>
+            <br />
 
-<h2>MapaDeBusqueda</h2>
-<gmap-map :center="{lat: 1.38, lng: 103.8}" :zoom="12" style="width: 100%; height: 500px">
-   
-</gmap-map>
+        </div>
+        <br>
+        <gmap-map :center="center" :zoom="12" style="width: 60%; height: 300px">
+
+        </gmap-map>
+    </div>
