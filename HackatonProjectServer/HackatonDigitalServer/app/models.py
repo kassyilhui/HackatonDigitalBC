@@ -42,14 +42,14 @@ class product(models.Model):
 
 class inventory(models.Model):
     id = models.AutoField(primary_key=True)
-    creation_date = models.DateField()
+    creation_date = models.DateField(auto_now=True)
     user_id = models.ForeignKey(user)
 
 class inventory_products(models.Model):
     id = models.AutoField(primary_key=True)
     product_id = models.ForeignKey(product)
     inventory_id = models.ForeignKey(inventory)
-    creation_date = models.DateField()
+    creation_date = models.DateField(auto_now=True)
     quantity = models.IntegerField()
 
 class status(models.Model):
@@ -61,7 +61,7 @@ class order(models.Model):
     owner_user_id = models.ForeignKey(user,related_name='owner')
     requester_user_id = models.ForeignKey(user,related_name='requester')
     status_id = models.ForeignKey(status)
-    creation_date = models.DateField()
+    creation_date = models.DateField(auto_now=True)
 
 class order_products(models.Model):
     id = models.AutoField(primary_key=True)
