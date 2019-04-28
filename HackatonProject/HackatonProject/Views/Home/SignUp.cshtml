@@ -3,43 +3,91 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
+
+
     <title>SignUp</title>
-</head>
-<body>
+
 
     <link href="~/Content/login.css" rel="stylesheet" />
     <div class="row signup">
         <form class="col s12">
-            <div class="row">
-                <div class="input-field col s6">
-                    
-                    <input id="first_name" type="text" class="validate">
-                    <label for="first_name"> <i class="fa fa-user"></i> Nombre</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate">
-                    <label for="last_name">  Apellido</label>
-                </div>
-            </div>
+         
          
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
-                    <label for="email"> <i class="fa fa-envelope"></i> Email</label>
+                    <input id="correo" type="email" class="validate">
+                    <label for="correo"> <i class="fa fa-envelope"></i> Correo eléctronico</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password"><i class="fa fa-lock"></i> Contraseña</label>
+                    <input id="contraseña" type="password" class="validate">
+                    <label for="contraseña"><i class="fa fa-lock"></i> Contraseña</label>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+
+                    <input id="nombreComercial" type="text" data-length="10">
+                    <label for="nombreComercial">Nombre comercial </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+
+                    <input id="ciudad" type="text" data-length="10">
+                    <label for="ciudad">Ciudad </label>
+                </div>
+                <div class="input-field col s6">
+
+                    <input id="estado" type="text" data-length="10">
+                    <label for="estado">Estado </label>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="input-field col s6">
+
+                    <input id="colonia" type="text" data-length="10">
+                    <label for="colonia">Colonia </label>
+                </div>
+                <div class="input-field col s6">
+
+                    <input id="codigoPostal" type="text" data-length="10">
+                    <label for="codigoPostal">Código postal</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+
+                    <textarea id="notas" class="materialize-textarea" data-length="120"></textarea>
+                    <label for="notas">Notas</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+
+                    <input id="latitud" type="text" data-length="10">
+                    <label for="latitud">Latitud</label>
+                </div>
+                <div class="input-field col s6">
+
+                    <input id="longitud" type="text" data-length="10">
+                    <label for="longitud">Longitud</label>
+                </div>
+            </div>
+
+            <gmap-map center="{lat: 1.38, lng: 103.8}" zoom="12" style="width: 100%; height: 500px; margin-bottom:5%;">
+
+            </gmap-map>
+
 
             <div class="row" style="position:center;">
                 <a class="waves-effect green lighten-2 btn text-darken-3 col s12 " style="position:center"> <i class="fa fa-heartbeat red-text text-lighten-2"></i> Registrarse</a>
@@ -54,5 +102,3 @@
 
 
 
-</body>
-</html>
