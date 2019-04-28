@@ -65,7 +65,6 @@ var app = new Vue({
                 };
                this.markers.push({ position: this.center });
                 this.MapZoom = 12;
-                this.currentPlace = null;
             }
         },
         centerCurrentPlace: function () {
@@ -75,7 +74,6 @@ var app = new Vue({
                     lng: this.currentPlace.geometry.location.lng(),
                 };
                 this.MapZoom = 12;
-                this.currentPlace = null;
             }
         }
 
