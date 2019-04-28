@@ -63,6 +63,13 @@ footer.page-footer {
     max-width:none;
 }
 
+.subcontainer {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 .figura{
    padding-right:10%;
    padding-left:10%;
