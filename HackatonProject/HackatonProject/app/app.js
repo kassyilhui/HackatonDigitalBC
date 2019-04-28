@@ -63,7 +63,7 @@ var app = new Vue({
                     lat: this.currentPlace.geometry.location.lat(),
                     lng: this.currentPlace.geometry.location.lng(),
                 };
-               // this.markers.push({ position: this.center });
+               this.markers.push({ position: this.center });
                 this.MapZoom = 12;
                 this.currentPlace = null;
             }
