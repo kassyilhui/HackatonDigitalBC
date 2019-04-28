@@ -2,16 +2,10 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
-
-    <title>SignUp</title>
-
-
-    <link href="~/Content/login.css" rel="stylesheet" />
+  <title>SignUp</title>
+  <link href="~/Content/login.css" rel="stylesheet" />
     <div class="row signup">
-        <form class="col s12">
+        
          
          
             <div class="row">
@@ -84,9 +78,31 @@
                 </div>
             </div>
 
-            <gmap-map center="{lat: 1.38, lng: 103.8}" zoom="12" style="width: 100%; height: 500px; margin-bottom:5%;">
 
-            </gmap-map>
+        <div class="row">
+            <div class="input-field col s6">
+
+                <h6>Ingrese la ubicación</h6>
+        <gmap-autocomplete @@place_changed="setPlace" >
+        </gmap-autocomplete>
+               
+                <label style="margin-top:6em;">
+
+                    <a class="waves-effect waves-effect green lighten-2 btn text-darken-3" @@click="addMarker"><i class="fa fa-plus-circle"></i> Agregar </a>
+                </label>
+            </div>
+            <div class="input-field col s6">
+
+               
+                <gmap-map :center="center" :zoom="12" style="width:100%; height: 250px; margin:5%;">
+
+                </gmap-map>
+            </div>
+        </div>
+            
+            
+
+           
 
 
             <div class="row" style="position:center;">
@@ -94,8 +110,7 @@
                
             </div>
 
-         
-        </form>
+        
     </div>
 
 
