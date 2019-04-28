@@ -15,9 +15,11 @@ var app = new Vue({
         message: 'Hello Vue.js!',
         mainUrl: '',
         center: {
-            lat: 10.0,
-            lng: 10.0
+            lat: 23.634501,
+            lng: -102.55278399999997
+
         },
+        apiPath: 'http://hdigitalbc.pythonanywhere.com/api/',
         currentPlace: {}
     },
     created: function () {
@@ -28,33 +30,33 @@ var app = new Vue({
     },
     methods: {
         reverseMessage: function () {
-            this.message = this.message.split('').reverse().join('')
+            this.message = this.message.split('').reverse().join('');
         },
-        hola: function () {
+        login: function () {
             axios
-                .get('/home/hola')
+                .post(this.apiPath + 'login'
+                )
                 .then(response => {
-                    this.info = response.data.bpi
+                    this.info = response.data;
                 })
                 .catch(error => {
-                    console.log(error)
-                    this.errored = true
-                })
-                .finally(() => this.loading = false)
+                    console.log(error);
+                    this.errored = true;
+                });
         },
-        setPlace(place) {
+        setPlace: function (place) {
             this.currentPlace = place;
         },
-        addMarker() {
+        addMarker: function () {
             if (this.currentPlace) {
                 this.center = {
                     lat: this.currentPlace.geometry.location.lat(),
                     lng: this.currentPlace.geometry.location.lng(),
                 };
-                
+
                 this.currentPlace = null;
             }
         }
-        
+
     }
-})
+});
