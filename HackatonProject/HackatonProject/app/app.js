@@ -34,7 +34,11 @@ var app = new Vue({
         },
         login: function () {
             axios
-                .post(this.apiPath + 'login'
+                .post(this.apiPath + 'login',
+                    {
+                        username: "World",
+                        password: "Hello"
+                    }
                 )
                 .then(response => {
                     this.info = response.data;
