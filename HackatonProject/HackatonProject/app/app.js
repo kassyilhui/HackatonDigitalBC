@@ -26,6 +26,7 @@ var app = new Vue({
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.parallax').parallax();
+            $('select').formSelect();
         });
         this.$session.set('username', "kass"); // Set the username in session Storage
         this.$session.set('username', "tu"); // Set the username in session Storage
