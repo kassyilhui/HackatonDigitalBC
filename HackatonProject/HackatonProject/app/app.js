@@ -8,7 +8,7 @@
     installComponents: true
 
 });
-
+Vue.use(VueSessionStorage);
 var app = new Vue({
     el: '#app',
     data: {
@@ -27,6 +27,9 @@ var app = new Vue({
             $('.sidenav').sidenav();
             $('.parallax').parallax();
         });
+        this.$session.set('username', "kass"); // Set the username in session Storage
+        this.$session.set('username', "tu"); // Set the username in session Storage
+
     },
     methods: {
         reverseMessage: function () {

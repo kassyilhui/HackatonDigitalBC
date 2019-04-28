@@ -174,7 +174,9 @@
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\vue-cookie.js" />
     <Content Include="Scripts\vue-google-maps.js" />
+    <Content Include="Scripts\vue-sessionstorage.min.js" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\vue.min.js" />
     <Content Include="Web.config" />
