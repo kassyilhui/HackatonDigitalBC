@@ -14,6 +14,12 @@ namespace HackatonProject
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+            name: "MisOrdenes",
+            url: "MisOrdenes",
+            defaults: new { controller = "Home", action = "MisOrdenes" }
+            );
+
+            routes.MapRoute(
             name: "AgregarEquipo",
             url: "AgregarEquipo",
             defaults: new { controller = "Home", action = "AgregarEquipo" }

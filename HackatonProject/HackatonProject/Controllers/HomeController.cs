@@ -8,6 +8,11 @@ namespace HackatonProject.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult MisOrdenes()
+        {
+            return View();
+        }
+
         public ActionResult AgregarEquipo()
         {
             return View();
