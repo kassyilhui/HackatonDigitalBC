@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-import app.models
+from app.models import user,type,product,inventory_products
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
