@@ -15,4 +15,6 @@ import app.views
 urlpatterns = [
     # Examples:
     url(r'^getStatus/', app.views.getStatus, name='server_status'),
+    url(r'^login/', app.views.login, name='server_status'),
+    url(r'^setup_user/', app.views.setup_user, name='server_status'),
 ]
