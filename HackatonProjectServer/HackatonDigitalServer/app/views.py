@@ -9,6 +9,7 @@ from datetime import datetime
 import urllib2
 from app.serializers import LoginSerializer, UserSerializer
 import io
+import app.models
 
 
 def getStatus(request):
@@ -22,19 +23,24 @@ def login(request):
             data = JSONParser().parse(request)
             serializer = LoginSerializer(data = data)
             if(serializer.is_valid()):
-                logged_user = UserWarning.objects.get(username = data['username'],password = data['password'])
+                logged_user = app.models.user.objects.get(username = data['username'],password = data['password'])
                 serializer = UserSerializer(logged_user)
-                return HttpResponse(serializer.data,status=201)
+                return HttpResponse(serializer.data,status=202)
     except Exception as e:
-        return HttpResponse(e,status=404)
+        return HttpResponse(e,status=400)
 
 @csrf_exempt
 def setup_user(request):
+    
     try:
         if request.method=='POST':
-            stream = io.BytesIO(request.data)
-            data = JSONParser().parse(stream)
+            data = JSONParser().parse(request)
             serializer = UserSerializer(data=data)
-            serializer.object.save()
-    except:
-        return HttpResponse(status=404)
+            
+            if serializer.is_valid():
+                serializer.save()
+                return HttpResponse(serializer.data,status=201)
+            else:
+                return HttpResponse(serializer.errors,status=404)
+    except Exception as e:
+        return HttpResponse(e,status=400)

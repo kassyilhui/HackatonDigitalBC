@@ -7,6 +7,9 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField()
 
 class UserSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        return user.objects.create(**validated_data)
+
     class Meta:
         model = user
         fields = '__all__'
