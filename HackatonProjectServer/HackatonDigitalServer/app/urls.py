@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^add_product/', app.views.addProduct, name='server_status'),
     url(r'^get_products/', app.views.getProducts, name='server_status'),
     url(r'^get_order/', app.views.getOrders, name='server_status'),
+    url(r'^set_order/', app.views.setOrder, name='server_status'),
+    url(r'^set_order_products/', app.views.setOrderProducts, name='server_status'),
 
 
 

@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from django.http import JsonResponse
 from datetime import datetime
 import urllib2
 from app.serializers import LoginSerializer, UserSerializer, InventoryProductsSerializer, OrderProductsSerializer
@@ -83,6 +84,38 @@ def getProducts(request):
              return HttpResponse(JSONRenderer().render(serializer.data),status=202)
     except Exception as e:
         return HttpResponse(e,status=400)
+
+@csrf_exempt
+def setOrder(request):
+    try:
+        if request.method == 'POST':
+             data = JSONParser().parse(request)
+             order = app.models.order()
+             order.owner_user_id =app.models.user.objects.get(id=data['owner'])
+             order.requester_user_id = app.models.user.objects.get(id=data['user'])
+             order.status_id = 0
+             order.save()
+             return JsonResponse({'order_id': order.id},status=202)
+
+    except Exception as e:
+        return HttpResponse(e,status=400)
+
+@csrf_exempt
+def setOrderProducts(request):
+    try:
+        if request.method == 'POST':
+             data = JSONParser().parse(request)
+             for order_p in data['products']:
+                 order_produ = app.models.order_products()
+                 order_produ.product_id = app.models.product.objects.get(id=order_p['product_id'])
+                 order_produ.order_id = app.models.order.objects.get(id=order_p['order_id'])
+                 order_produ.quantity = order_p['quantity']
+                 order_produ.save()
+             return HttpResponse(status=202)
+
+    except Exception as e:
+        return HttpResponse(e,status=400)
+
 
 @csrf_exempt
 def addProduct(request):

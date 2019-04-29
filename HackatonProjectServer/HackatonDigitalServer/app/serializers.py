@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from app.models import user,product,inventory_products,order,order_products
+from app.models import user,product,inventory_products,order,order_products,inventory
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -31,11 +31,18 @@ class OrderSerializer(serializers.ModelSerializer):
         model = order
         fields = '__all__'
 
+class InventorySerializer(serializers.ModelSerializer):
+    user_id = UserSerializer()
+    class Meta:
+        model = inventory
+        fields = '__all__'
+
 class InventoryProductsSerializer(serializers.ModelSerializer):
     product_id = ProductSerializer()
+    inventory_id = InventorySerializer()
     class Meta:
         model = inventory_products
-        fields =  ('inventory_id_id', 'quantity','product_id')
+        fields =  ('inventory_id', 'quantity','product_id')
 
 
 class OrderProductsSerializer(serializers.ModelSerializer):
