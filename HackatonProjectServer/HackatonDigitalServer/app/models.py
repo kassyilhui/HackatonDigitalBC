@@ -17,53 +17,43 @@ class user(models.Model):
     shipping_notes = models.CharField(max_length = 40)
     pos_lat = models.FloatField()
     pos_lon = models.FloatField()
-    creation_date = models.DateField()
+    creation_date = models.DateField(auto_now=True)
 
 
     def __unicode__(self):
         return self.username
-
-class type(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length = 40)
-
-    def __unicode__(self):
-        return self.name
 
 class product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
     description = models.CharField(max_length=40)
     price = models.FloatField()
-    type_id = models.ForeignKey(type)
+    type_id = models.IntegerField()
 
     def __unicode__(self):
         return self.name
 
 class inventory(models.Model):
     id = models.AutoField(primary_key=True)
-    creation_date = models.DateField()
+    creation_date = models.DateField(auto_now=True)
     user_id = models.ForeignKey(user)
 
 class inventory_products(models.Model):
     id = models.AutoField(primary_key=True)
     product_id = models.ForeignKey(product)
     inventory_id = models.ForeignKey(inventory)
-    creation_date = models.DateField()
+    creation_date = models.DateField(auto_now=True)
     quantity = models.IntegerField()
-
-class status(models.Model):
-    id=models.AutoField(primary_key=True)
-    description = models.CharField(max_length=40)
 
 class order(models.Model):
     id = models.AutoField(primary_key=True)
     owner_user_id = models.ForeignKey(user,related_name='owner')
     requester_user_id = models.ForeignKey(user,related_name='requester')
-    status_id = models.ForeignKey(status)
-    creation_date = models.DateField()
+    status_id = models.IntegerField()
+    creation_date = models.DateField(auto_now=True)
 
 class order_products(models.Model):
     id = models.AutoField(primary_key=True)
     product_id = models.ForeignKey(product)
+    order_id = models.ForeignKey(order)
     quantity = models.IntegerField()

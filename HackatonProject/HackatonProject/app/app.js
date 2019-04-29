@@ -9,6 +9,9 @@
 
 });
 Vue.use(VueSessionStorage);
+
+
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -18,6 +21,7 @@ var app = new Vue({
         loginUser: {},
         newUser: {},
         newProduct: {},
+        misOrdenes: {},
         center: {
             lat: 23.634501,
             lng: -102.55278399999997
@@ -35,6 +39,7 @@ var app = new Vue({
             $('.parallax').parallax();
             $('select').formSelect();
             $('.collapsible').collapsible();
+           
         });
         if (window.location.pathname == '/Home/MapaDeBusqueda') {
             this.getProducts();
@@ -133,9 +138,12 @@ var app = new Vue({
                     shipping_notes: this.newUser.notes,
                     pos_lat: this.newUser.lat,
                     pos_lon: this.newUser.lon
+
                 }
             }).then(response => {
                 this.info = response.data;
+                M.toast({ html: 'A sido registrado correctamente' });
+                window.location.href = 'home/';
             })
                 .catch(error => {
                     console.log(error);
@@ -151,12 +159,33 @@ var app = new Vue({
                 data: {
                     name: this.newProduct.nombreComercial,
                     description: this.newProduct.descripcion,
-                    user_id: this.newProduct.precio,
+                    user_id: this.currentUser.id,
                     price: this.newProduct.precio,
-                    quantity: this.newProduct.state
+                    quantity: this.newProduct.cantidad
                 }
             }).then(response => {
                 this.info = response.data;
+                M.toast({ html: 'Equipo agregado' });
+            })
+                .catch(error => {
+                    console.log(error);
+                    this.errored = true;
+                });
+        },
+
+        Ordenes: function () {
+            axios({
+                method: 'post',
+                url: this.apiPath + "get_products/",
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    
+                    user_id: this.currentUser.id
+
+                }
+            }).then(response => {
+                this.product_id = response.data;
+               
             })
                 .catch(error => {
                     console.log(error);
