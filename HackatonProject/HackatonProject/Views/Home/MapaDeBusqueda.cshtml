@@ -3,7 +3,7 @@
     ViewBag.Title = "Busqueda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div class="subcontainer" @@load="getProducts">
+    <div class="subcontainer"  onload="getProducts">
         <h2>Mapa De Busqueda</h2>
         <div>
             <h2>Busca ubicaciones específicas</h2>
@@ -19,36 +19,32 @@
         <div class="row">
             <div class="col s12">
                 <gmap-map class="col s6" :center="center" :zoom="MapZoom" style="height: 300px; margin-right:15px;">
-                
+                    <gmap-marker :key="index"
+                                 v-for="(m, index) in markers"
+                                 :position="m.position"
+                                 @@click="center=m.position"></gmap-marker>
 
                 </gmap-map>
-                <table class="highlight hand col s5">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
-                        </tr>
-                    </thead>
+                <div style="height:300px; overflow:auto;">
+                    <table class="highlight hand col s5 " >
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Dueño</th>
+                                <th>Costos uso/transporte</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Alvin</td>
-                            <td>Eclair</td>
-                            <td>$0.87</td>
-                        </tr>
-                        <tr>
-                            <td>Alan</td>
-                            <td>Jellybean</td>
-                            <td>$3.76</td>
-                        </tr>
-                        <tr>
-                            <td>Jonathan</td>
-                            <td>Lollipop</td>
-                            <td>$7.00</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <tbody >
+                            <tr v-for="producto in products" v-on:click="setProductLocation(producto)">
+                                <td>{{producto.product_id.name}}</td>
+                                <td>{{producto.inventory_id.user_id.username}}</td>
+                                <td>{{producto.product_id.description}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                </div>
             </div>
-        </div>
     </div>

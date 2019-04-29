@@ -26,7 +26,8 @@ var app = new Vue({
         MapZoom:4,
         apiPath: 'http://hdigitalbc.pythonanywhere.com/api/',
         currentPlace: {},
-        currentUser: {}
+        currentUser: {},
+        products: {}
     },
     created: function () {
         $(document).ready(function () {
@@ -35,6 +36,10 @@ var app = new Vue({
             $('select').formSelect();
             $('.collapsible').collapsible();
         });
+        if (window.location.pathname == '/Home/MapaDeBusqueda') {
+            this.getProducts();
+        }
+
         this.currentUser = this.$session.get('currentUser');
         //this.$session.set('username', "kass"); // Set the username in session Storage
         //this.$session.set('username', "tu"); // Set the username in session Storage
@@ -92,10 +97,19 @@ var app = new Vue({
         getProducts: function () {
             axios({
                 method: 'get',
-                url: this.apiPath + "search/",
+                url: this.apiPath + "get_products/",
                 headers: { 'Content-Type': 'application/json' }
             }).then(response => {
-                this.info = response.data;
+                this.products = response.data;
+                console.log(response.data);
+                for (var i = 0; i < this.productslength; i++) {
+                    this.productCenter = {
+                        lat: this.products.inventory_id.user_id.pos_lat,
+                        lng: this.products.inventory_id.user_id.pos_lon
+                    };
+                    this.markers.push({ position: this.productCenter });
+
+                }
             })
                 .catch(error => {
                     console.log(error);
@@ -148,6 +162,13 @@ var app = new Vue({
                     console.log(error);
                     this.errored = true;
                 });
+        },
+        setProductLocation: function (product) {
+            this.center = {
+                lat: product.inventory_id.user_id.pos_lat,
+                lng: product.inventory_id.user_id.pos_lon,
+            };
+            this.MapZoom = 12;
         }
 
 
