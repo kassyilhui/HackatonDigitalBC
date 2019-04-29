@@ -33,13 +33,15 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app',
+    'rest_framework',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
+
 ]
 
 MIDDLEWARE_CLASSES = [
