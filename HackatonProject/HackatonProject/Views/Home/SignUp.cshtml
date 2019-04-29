@@ -10,8 +10,8 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="correo" type="email" class="validate" v-model="newUser.username">
-                    <label for="correo"> <i class="fa fa-envelope"></i> Correo eléctronico</label>
+                    <input id="correo" type="email" v-model="newUser.username">
+                    <label for="correo"> <i class="fa fa-user"></i> Usuario</label>
                 </div>
             </div>
 
@@ -66,14 +66,15 @@
             </div>
 
             <div class="row">
+                <h6>latitud y longitud se completaran automaticamete cuando ingrese su hubicación</h6>
                 <div class="input-field col s6">
-
-                    <input id="latitud" type="text"  v-model="newUser.lat" data-length="10">
+                    
+                    <input id="latitud" type="text" readonly  v-model="newUser.lat" data-length="10">
                     <label for="latitud">Latitud</label>
                 </div>
                 <div class="input-field col s6">
 
-                    <input id="longitud" type="text"  v-model="newUser.lon" data-length="10">
+                    <input id="longitud" type="text" readonly  v-model="newUser.lon" data-length="10">
                     <label for="longitud">Longitud</label>
                 </div>
             </div>

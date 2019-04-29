@@ -13,7 +13,7 @@
         <div class="row">
             <div class="input-field col s12">
 
-                <input id="nombreComercial" type="text" data-length="20">
+                <input id="nombreComercial" type="text" v-model="newProduct.nombreComercial" data-length="20">
                 <label for="nombreComercial">Nombre del equipo </label>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="input-field col s12">
 
-                <textarea id="descripcion" class="materialize-textarea" data-length="150"></textarea>
+                <textarea id="descripcion" class="materialize-textarea" v-model="newProduct.descripcion" data-length="150"></textarea>
                 <label for="descripcion">Descripción</label>
             </div>
         </div>
@@ -31,16 +31,16 @@
         <div class="row">
             <div class="input-field col s12">
 
-                <textarea id="precio" class="materialize-textarea" data-length="150"></textarea>
-                <label for="precio">Descripción</label>
+                <input id="precio" class="materialize-textarea" v-model="newProduct.precio" data-length="10">
+                <label for="precio">precio</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
 
-                <textarea id="cantidad" class="materialize-textarea" data-length="150"></textarea>
-                <label for="cantidad">Descripción</label>
+                <input id="cantidad" class="materialize-textarea" v-model="newProduct.cantidad" data-length="5">
+                <label for="cantidad">cantidad</label>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
 
 
             <div class="row" style="position:center;">
-                <a class="waves-effect green lighten-2 btn text-darken-3 col s12 " style="position:center"> <i class="fa fa-plus-square red-text text-lighten-2"></i> Agregar nuevo equipo</a>
+                <a class="waves-effect green lighten-2 btn text-darken-3 col s12 " v-on:click="AgregarEquipo" style="position:center"> <i class="fa fa-plus-square red-text text-lighten-2"></i> Agregar nuevo equipo</a>
 
             </div>
         </div>

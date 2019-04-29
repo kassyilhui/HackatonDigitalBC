@@ -145,6 +145,7 @@
     <Content Include="Content\login.css" />
     <Content Include="Content\materialize.css" />
     <Content Include="Content\materialize.min.css" />
+    <Content Include="Content\toast.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -175,6 +176,7 @@
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toast.js" />
     <Content Include="Scripts\vue-cookie.js" />
     <Content Include="Scripts\vue-google-maps.js" />
     <Content Include="Scripts\vue-sessionstorage.min.js" />
