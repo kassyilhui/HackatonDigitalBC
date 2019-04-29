@@ -16,7 +16,8 @@ var app = new Vue({
         mainUrl: '',
         markers: [],
         loginUser: {},
-        newUser:{},
+        newUser: {},
+        newProduct: {},
         center: {
             lat: 23.634501,
             lng: -102.55278399999997
@@ -37,9 +38,7 @@ var app = new Vue({
         //this.$session.set('username', "tu"); // Set the username in session Storage
 
     },
-    created: function () {
-      //  this.getProducts();
-    },
+   
     methods: {
         reverseMessage: function () {
             this.message = this.message.split('').reverse().join('');
@@ -101,6 +100,7 @@ var app = new Vue({
                     this.errored = true;
                 });
         },
+
         signUp: function () {
             axios({
                 method: 'post',
@@ -117,6 +117,27 @@ var app = new Vue({
                     shipping_notes: this.newUser.notes,
                     pos_lat: this.newUser.lat,
                     pos_lon: this.newUser.lon
+                }
+            }).then(response => {
+                this.info = response.data;
+            })
+                .catch(error => {
+                    console.log(error);
+                    this.errored = true;
+                });
+        },
+
+        AgregarEquipo: function () {
+            axios({
+                method: 'post',
+                url: this.apiPath + "add_product/",
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    name: this.newProduct.nombreComercial,
+                    description: this.newProduct.descripcion,
+                    user_id: this.newProduct.precio,
+                    price: this.newProduct.precio,
+                    quantity: this.newProduct.state
                 }
             }).then(response => {
                 this.info = response.data;
