@@ -14,7 +14,8 @@ var app = new Vue({
     data: {
         message: 'Hello Vue.js!',
         mainUrl: '',
-        markers:[],
+        markers: [],
+        loginUser: {},
         center: {
             lat: 23.634501,
             lng: -102.55278399999997
@@ -40,18 +41,15 @@ var app = new Vue({
             this.message = this.message.split('').reverse().join('');
         },
         login: function () {
-            var data = {
-                "username": "jesus96",
-                "password": "123456"
-            };
+           
 
             axios({
                 method: 'post',
                 url: this.apiPath + "login/",
                 headers: { 'Content-Type': 'application/json'},
                 data: {
-                    username: "jesus96",
-                    password: "123456"
+                    username: this.loginUser.email,
+                    password: this.loginUser.password
                 }
             }).then(response => {
                 this.info = response.data;
