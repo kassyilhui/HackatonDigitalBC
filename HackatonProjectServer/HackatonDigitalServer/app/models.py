@@ -23,19 +23,12 @@ class user(models.Model):
     def __unicode__(self):
         return self.username
 
-class type(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length = 40)
-
-    def __unicode__(self):
-        return self.name
-
 class product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
     description = models.CharField(max_length=40)
     price = models.FloatField()
-    type_id = models.ForeignKey(type)
+    type_id = models.IntegerField()
 
     def __unicode__(self):
         return self.name
@@ -52,15 +45,11 @@ class inventory_products(models.Model):
     creation_date = models.DateField(auto_now=True)
     quantity = models.IntegerField()
 
-class status(models.Model):
-    id=models.AutoField(primary_key=True)
-    description = models.CharField(max_length=40)
-
 class order(models.Model):
     id = models.AutoField(primary_key=True)
     owner_user_id = models.ForeignKey(user,related_name='owner')
     requester_user_id = models.ForeignKey(user,related_name='requester')
-    status_id = models.ForeignKey(status)
+    status_id = models.IntegerField()
     creation_date = models.DateField(auto_now=True)
 
 class order_products(models.Model):

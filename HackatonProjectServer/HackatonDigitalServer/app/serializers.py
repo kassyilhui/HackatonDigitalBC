@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from app.models import user,type,product,inventory_products
+from app.models import user,product,inventory_products
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
@@ -14,13 +14,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = user
         fields = '__all__'
 
-class TypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = type
-        fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
-    type_id = TypeSerializer()
     class Meta:
         model = product
         fields = '__all__'
