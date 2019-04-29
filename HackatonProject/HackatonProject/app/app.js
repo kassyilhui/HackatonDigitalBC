@@ -35,6 +35,7 @@ var app = new Vue({
             $('select').formSelect();
             $('.collapsible').collapsible();
         });
+        this.currentUser = this.$session.get('currentUser');
         //this.$session.set('username', "kass"); // Set the username in session Storage
         //this.$session.set('username', "tu"); // Set the username in session Storage
 
