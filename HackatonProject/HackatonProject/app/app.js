@@ -40,16 +40,22 @@ var app = new Vue({
             this.message = this.message.split('').reverse().join('');
         },
         login: function () {
-            axios
-                .post(this.apiPath + 'login',
-                    {
-                        username: "World",
-                        password: "Hello"
-                    }
-                )
-                .then(response => {
-                    this.info = response.data;
-                })
+            var data = {
+                "username": "jesus96",
+                "password": "123456"
+            };
+
+            axios({
+                method: 'post',
+                url: this.apiPath + "login/",
+                headers: { 'Content-Type': 'application/json'},
+                data: {
+                    username: "jesus96",
+                    password: "123456"
+                }
+            }).then(response => {
+                this.info = response.data;
+            })
                 .catch(error => {
                     console.log(error);
                     this.errored = true;
