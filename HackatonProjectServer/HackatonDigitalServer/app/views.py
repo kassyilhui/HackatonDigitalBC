@@ -8,7 +8,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from datetime import datetime
 import urllib2
-from app.serializers import LoginSerializer, UserSerializer, InventoryProductsSerializer
+from app.serializers import LoginSerializer, UserSerializer, InventoryProductsSerializer, OrderProductsSerializer
 import io
 import app.models
 import json
@@ -49,6 +49,25 @@ def setup_user(request):
         return HttpResponse(e,status=400)
 
 @csrf_exempt
+def getOrders(request):
+    try:
+        if request.method == 'POST':
+             data = JSONParser().parse(request)
+             user_ = app.models.user.objects.get(id=data['user_id'])
+             
+             if data['type'] == "1":
+                 orders = app.models.order.objects.filter(owner_user_id = user_)
+                 po = app.models.order_products.objects.filter(order_id__in=orders)
+             elif data['type'] == "2":
+                 orders = app.models.order.objects.get(requester_user_id = user_)
+                 po = app.models.order_products.objects.filter(order_id__in=orders)
+
+             serializer = OrderProductsSerializer(list(po), many=True)
+             return HttpResponse(JSONRenderer().render(serializer.data),status=202)
+    except Exception as e:
+        return HttpResponse(e,status=400)
+
+@csrf_exempt
 def getProducts(request):
     try:
         if request.method == 'POST':
@@ -57,11 +76,11 @@ def getProducts(request):
              inv_ = app.models.inventory.objects.get(user_id = user_)
              ins = app.models.inventory_products.objects.filter(inventory_id=inv_)
              serializer = InventoryProductsSerializer(list(ins), many=True)
-             return HttpResponse(serializer.data,status=202)
+             return HttpResponse(JSONRenderer().render(serializer.data),status=202)
         elif request.method == 'GET':
              ins = app.models.inventory_products.objects.all()
              serializer = InventoryProductsSerializer(list(ins), many=True)
-             return HttpResponse(serializer.data,status=202)
+             return HttpResponse(JSONRenderer().render(serializer.data),status=202)
     except Exception as e:
         return HttpResponse(e,status=400)
 

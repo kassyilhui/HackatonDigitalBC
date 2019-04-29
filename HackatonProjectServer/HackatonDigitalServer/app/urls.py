@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'^search/', app.views.search_product, name='server_status'),
     url(r'^add_product/', app.views.addProduct, name='server_status'),
     url(r'^get_products/', app.views.getProducts, name='server_status'),
+    url(r'^get_order/', app.views.getOrders, name='server_status'),
+
 
 
 

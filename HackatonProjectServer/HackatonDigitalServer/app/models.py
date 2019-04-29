@@ -55,4 +55,5 @@ class order(models.Model):
 class order_products(models.Model):
     id = models.AutoField(primary_key=True)
     product_id = models.ForeignKey(product)
+    order_id = models.ForeignKey(order)
     quantity = models.IntegerField()
