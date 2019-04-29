@@ -25,25 +25,38 @@ p {
   line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);
+  margin:0;
+  padding:0;
+      max-width: none;
   
 }
   .parallax-container .section {
     width: 100%;
+    margin:0;
+    padding:0;
+        max-width: none;
   }
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
     top: 40%;
+    width:100%;
+    margin:0;
+    padding:0;
   }
   #index-banner .section {
     top: 10%;
+    width:100%;
+    margin:0;
   }
 }
 
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
+    width:100%;
+    margin:0;
   }
 }
 
@@ -75,4 +88,8 @@ footer.page-footer {
    padding-left:10%;
 
     
+}
+
+html{
+    font-size:16px;
 }
