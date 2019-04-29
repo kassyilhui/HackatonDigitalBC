@@ -25,7 +25,8 @@ var app = new Vue({
         },
         MapZoom:4,
         apiPath: 'http://hdigitalbc.pythonanywhere.com/api/',
-        currentPlace: {}
+        currentPlace: {},
+        currentUser: {}
     },
     created: function () {
         $(document).ready(function () {
@@ -38,13 +39,12 @@ var app = new Vue({
         //this.$session.set('username', "tu"); // Set the username in session Storage
 
     },
-   
+
     methods: {
         reverseMessage: function () {
             this.message = this.message.split('').reverse().join('');
         },
-        login: function () {
-           
+        login: function () {       
 
             axios({
                 method: 'post',
@@ -56,6 +56,7 @@ var app = new Vue({
                 }
             }).then(response => {
                 this.info = response.data;
+                this.$session.set('currentUser', response.data); // Set the username in session Storage
                 window.location.href = 'home/MapaDeBusqueda';
             })
                 .catch(error => {
