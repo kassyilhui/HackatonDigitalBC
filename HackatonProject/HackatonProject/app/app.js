@@ -57,6 +57,7 @@ var app = new Vue({
                 }
             }).then(response => {
                 this.info = response.data;
+                window.location.href = 'home/MapaDeBusqueda';
             })
                 .catch(error => {
                     console.log(error);
