@@ -24,4 +24,4 @@ class InventoryProductsSerializer(serializers.ModelSerializer):
     product_id = ProductSerializer()
     class Meta:
         model = inventory_products
-        fields = '__all__'
+        fields =  ('inventory_id_id', 'quantity','product_id')

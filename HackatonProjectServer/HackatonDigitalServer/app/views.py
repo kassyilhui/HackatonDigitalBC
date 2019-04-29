@@ -8,11 +8,11 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from datetime import datetime
 import urllib2
-from app.serializers import LoginSerializer, UserSerializer
+from app.serializers import LoginSerializer, UserSerializer, InventoryProductsSerializer
 import io
 import app.models
 import json
-
+from django.core import serializers as s
 
 def getStatus(request):
     html = "<html><body>I'm the server, and i'm alright</body></html>"
@@ -49,20 +49,38 @@ def setup_user(request):
         return HttpResponse(e,status=400)
 
 @csrf_exempt
+def getProducts(request):
+    try:
+        if request.method == 'POST':
+             data = JSONParser().parse(request)
+             user_ = app.models.user.objects.get(id=data['user_id'])
+             inv_ = app.models.inventory.objects.get(user_id = user_)
+             ins = app.models.inventory_products.objects.filter(inventory_id=inv_)
+             serializer = InventoryProductsSerializer(list(ins), many=True)
+             return HttpResponse(serializer.data,status=202)
+        elif request.method == 'GET':
+             ins = app.models.inventory_products.objects.all()
+             serializer = InventoryProductsSerializer(list(ins), many=True)
+             return HttpResponse(serializer.data,status=202)
+    except Exception as e:
+        return HttpResponse(e,status=400)
+
+@csrf_exempt
 def addProduct(request):
     try:
         if request.method == 'POST':
              data = JSONParser().parse(request)
-             prod = product()
+             prod = app.models.product()
              prod.name = data['name']
              prod.description = data['description']
              prod.price = data['price']
+             prod.type_id = 0
              prod.save()
 
-             user_ = user.objects.get(id=data['user_id'])
+             user_ = app.models.user.objects.get(id=data['user_id'])
              inv_ = app.models.inventory.objects.get(user_id = user_)
 
-             inv_pr = inventory_products()
+             inv_pr = app.models.inventory_products()
              inv_pr.product_id = prod
              inv_pr.inventory_id = inv_
              inv_pr.quantity = data['quantity']
@@ -105,7 +123,6 @@ def search_product(request):
             for product in product_list:
                 print("for")
                 if range > 0:
-                    print("rango")
                     ranged_products_.append(searchedProduct(product.price,
                     product.description,
                     app.models.inventory_products.objects.get(product_id = product).inventory_id.user_id_id,
@@ -118,14 +135,12 @@ def search_product(request):
                             ranged_products.insert(x)
                     json_ = json.dumps([ob.__dict__ for ob in ranged_products])
                 else:
-                    print("else")
                     p = searchedProduct()
                     p.description = product.description
                     p.price = product.price
                     p.user_id = app.models.inventory_products.objects.get(product_id = product.id).inventory_id.user_id_id
                     p.product_id = product.id
                     inventory_products_.append(p)
-                    print("dumps")
                     json_ = json.dumps([ob.__dict__ for ob in inventory_products_])
             return HttpResponse(json_,status=201)
     except Exception as e:
