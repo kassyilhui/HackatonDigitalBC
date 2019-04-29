@@ -16,6 +16,7 @@ var app = new Vue({
         mainUrl: '',
         markers: [],
         loginUser: {},
+        newUser:{},
         center: {
             lat: 23.634501,
             lng: -102.55278399999997
@@ -35,6 +36,9 @@ var app = new Vue({
         //this.$session.set('username', "kass"); // Set the username in session Storage
         //this.$session.set('username', "tu"); // Set the username in session Storage
 
+    },
+    created: function () {
+      //  this.getProducts();
     },
     methods: {
         reverseMessage: function () {
@@ -68,6 +72,8 @@ var app = new Vue({
                     lat: this.currentPlace.geometry.location.lat(),
                     lng: this.currentPlace.geometry.location.lng(),
                 };
+                this.newUser.lat = this.center.lat;
+                this.newUser.lon = this.center.lng;
                this.markers.push({ position: this.center });
                 this.MapZoom = 12;
             }
@@ -80,7 +86,46 @@ var app = new Vue({
                 };
                 this.MapZoom = 12;
             }
+        },
+        getProducts: function () {
+            axios({
+                method: 'get',
+                url: this.apiPath + "search/",
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => {
+                this.info = response.data;
+            })
+                .catch(error => {
+                    console.log(error);
+                    this.errored = true;
+                });
+        },
+        signUp: function () {
+            axios({
+                method: 'post',
+                url: this.apiPath + "setup_user/",
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    username: this.newUser.username,
+                    password: this.newUser.password,
+                    commercial_name: this.newUser.comercialname,
+                    city: this.newUser.city,
+                    state: this.newUser.state,
+                    district: this.newUser.district,
+                    postal_code: this.newUser.cp,
+                    shipping_notes: this.newUser.notes,
+                    pos_lat: this.newUser.lat,
+                    pos_lon: this.newUser.lon
+                }
+            }).then(response => {
+                this.info = response.data;
+            })
+                .catch(error => {
+                    console.log(error);
+                    this.errored = true;
+                });
         }
+
 
     }
 });

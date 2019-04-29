@@ -10,14 +10,14 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="correo" type="email" class="validate">
+                    <input id="correo" type="email" class="validate" v-model="newUser.username">
                     <label for="correo"> <i class="fa fa-envelope"></i> Correo eléctronico</label>
                 </div>
             </div>
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="contraseña" type="password" class="validate">
+                    <input id="contraseña" type="password" class="validate"  v-model="newUser.password">
                     <label for="contraseña"><i class="fa fa-lock"></i> Contraseña</label>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="input-field col s12">
 
-                    <input id="nombreComercial" type="text" data-length="10">
+                    <input id="nombreComercial" type="text" data-length="10"  v-model="newUser.comercialname">
                     <label for="nombreComercial">Nombre comercial </label>
                 </div>
             </div>
@@ -33,12 +33,12 @@
             <div class="row">
                 <div class="input-field col s6">
 
-                    <input id="ciudad" type="text" data-length="10">
+                    <input id="ciudad" type="text"  v-model="newUser.city" data-length="10">
                     <label for="ciudad">Ciudad </label>
                 </div>
                 <div class="input-field col s6">
 
-                    <input id="estado" type="text" data-length="10">
+                    <input id="estado" type="text"  v-model="newUser.state" data-length="10">
                     <label for="estado">Estado </label>
                 </div>
             </div>
@@ -47,12 +47,12 @@
             <div class="row">
                 <div class="input-field col s6">
 
-                    <input id="colonia" type="text" data-length="10">
+                    <input id="colonia" type="text"  v-model="newUser.district" data-length="10">
                     <label for="colonia">Colonia </label>
                 </div>
                 <div class="input-field col s6">
 
-                    <input id="codigoPostal" type="text" data-length="10">
+                    <input id="codigoPostal" type="text"  v-model="newUser.cp" data-length="10">
                     <label for="codigoPostal">Código postal</label>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="input-field col s12">
 
-                    <textarea id="notas" class="materialize-textarea" data-length="120"></textarea>
+                    <textarea id="notas" class="materialize-textarea"  v-model="newUser.notes" data-length="120"></textarea>
                     <label for="notas">Notas</label>
                 </div>
             </div>
@@ -68,12 +68,12 @@
             <div class="row">
                 <div class="input-field col s6">
 
-                    <input id="latitud" type="text" data-length="10">
+                    <input id="latitud" type="text"  v-model="newUser.lat" data-length="10">
                     <label for="latitud">Latitud</label>
                 </div>
                 <div class="input-field col s6">
 
-                    <input id="longitud" type="text" data-length="10">
+                    <input id="longitud" type="text"  v-model="newUser.lon" data-length="10">
                     <label for="longitud">Longitud</label>
                 </div>
             </div>
@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="input-field col s6">
 
-                    <h6>Ingrese la ubicación</h6>
+                    <h6>Ingrese la ubicación de su establecimiento</h6>
                     <gmap-autocomplete @@place_changed="setPlace">
                     </gmap-autocomplete>
 
@@ -109,7 +109,7 @@
 
 
             <div class="row" style="position:center;">
-                <a class="waves-effect green lighten-2 btn text-darken-3 col s12 " style="position:center"> <i class="fa fa-heartbeat red-text text-lighten-2"></i> Registrarse</a>
+                <a class="waves-effect green lighten-2 btn text-darken-3 col s12 " v-on:click="signUp" style="position:center"> <i class="fa fa-heartbeat red-text text-lighten-2"></i> Registrarse</a>
 
             </div>
 
